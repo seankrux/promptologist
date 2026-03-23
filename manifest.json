@@ -1,0 +1,73 @@
+{
+  "manifest_version": 3,
+  "name": "Promptologist",
+  "version": "2.0.0",
+  "description": "Advanced AI prompt management and automation tool with multi-platform support and intelligent workflow capabilities",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "scripting",
+    "tabs",
+    "unlimitedStorage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://perplexity.ai/*",
+    "https://poe.com/*",
+    "https://grok.x.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://openai.com/*",
+        "https://claude.ai/*",
+        "https://perplexity.ai/*",
+        "https://gemini.google.com/*",
+        "https://poe.com/*",
+        "https://grok.x.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": [
+        "https://openai.com/*",
+        "https://claude.ai/*",
+        "https://perplexity.ai/*",
+        "https://gemini.google.com/*",
+        "https://poe.com/*",
+        "https://grok.x.com/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

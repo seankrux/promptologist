@@ -1,0 +1,41 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["chrome >= 90"]
+        },
+        "modules": "auto",
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-nullish-coalescing-operator"
+  ],
+  "env": {
+    "development": {
+      "sourceMaps": "inline"
+    },
+    "production": {
+      "sourceMaps": true
+    },
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            },
+            "modules": "commonjs"
+          }
+        ]
+      ]
+    }
+  }
+}
