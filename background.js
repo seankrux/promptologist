@@ -1,9 +1,9 @@
 import{d as p}from"./assets/database-Ckwkmqwe.js";
 
-console.log("[Sean Promptology] Background service worker initialized");
+console.log("[Promptologist] Background service worker initialized");
 
 chrome.runtime.onInstalled.addListener(async()=>{
-  console.log("[Sean Promptology] Extension installed/updated");
+  console.log("[Promptologist] Extension installed/updated");
   await updateContextMenu();
 });
 
@@ -68,29 +68,29 @@ async function updateContextMenu(){
       grouped[a].push(e);
     });
     
-    chrome.contextMenus.create({id:"sean-promptology-root",title:"Sean Promptology",contexts:["selection","page"]});
+    chrome.contextMenus.create({id:"promptologist-root",title:"Promptologist",contexts:["selection","page"]});
     
     const favorites=prompts.filter(e=>e.isFavorite);
     if(favorites.length>0){
-      chrome.contextMenus.create({id:"favorites-separator",title:"⭐ Favorites",contexts:["selection","page"],parentId:"sean-promptology-root",enabled:!1});
+      chrome.contextMenus.create({id:"favorites-separator",title:"⭐ Favorites",contexts:["selection","page"],parentId:"promptologist-root",enabled:!1});
       favorites.forEach(e=>{
-        chrome.contextMenus.create({id:`prompt-${e.id}`,title:`⭐ ${e.name}`,contexts:["selection","page"],parentId:"sean-promptology-root"});
+        chrome.contextMenus.create({id:`prompt-${e.id}`,title:`⭐ ${e.name}`,contexts:["selection","page"],parentId:"promptologist-root"});
       });
-      chrome.contextMenus.create({id:"separator-after-favorites",type:"separator",contexts:["selection","page"],parentId:"sean-promptology-root"});
+      chrome.contextMenus.create({id:"separator-after-favorites",type:"separator",contexts:["selection","page"],parentId:"promptologist-root"});
     }
     
     Object.entries(grouped).forEach(([categoryName,catPrompts])=>{
       if(catPrompts.length===0)return;
       const categoryId=`category-${categoryName}`;
-      chrome.contextMenus.create({id:categoryId,title:`📁 ${categoryName}`,contexts:["selection","page"],parentId:"sean-promptology-root"});
+      chrome.contextMenus.create({id:categoryId,title:`📁 ${categoryName}`,contexts:["selection","page"],parentId:"promptologist-root"});
       catPrompts.filter(r=>!r.isFavorite).forEach(r=>{
         chrome.contextMenus.create({id:`prompt-${r.id}`,title:r.name,contexts:["selection","page"],parentId:categoryId});
       });
     });
     
-    console.log("[Sean Promptology] Context menu updated with",prompts.length,"prompts");
+    console.log("[Promptologist] Context menu updated with",prompts.length,"prompts");
   }catch(error){
-    console.error("[Sean Promptology] Error updating context menu:",error);
+    console.error("[Promptologist] Error updating context menu:",error);
   }
 }
 
@@ -112,7 +112,7 @@ async function executePromptWithRetry(tabId,prompt,platform,maxRetries=5){
       });
       
       if(response&&response.success===true){
-        console.log(`[Sean Promptology] Prompt executed on attempt ${attempt+1}`);
+        console.log(`[Promptologist] Prompt executed on attempt ${attempt+1}`);
         return true;
       }
       throw new Error(`Invalid response: ${JSON.stringify(response)}`);
@@ -121,12 +121,12 @@ async function executePromptWithRetry(tabId,prompt,platform,maxRetries=5){
       if(attempt>=maxRetries-1)break;
       
       const delayMs=INITIAL_DELAY_MS*Math.pow(2,attempt);
-      console.log(`[Sean Promptology] Retry attempt ${attempt+2}/${maxRetries} in ${delayMs}ms...`);
+      console.log(`[Promptologist] Retry attempt ${attempt+2}/${maxRetries} in ${delayMs}ms...`);
       await new Promise(resolve=>setTimeout(resolve,delayMs));
     }
   }
   
-  console.error(`[Sean Promptology] Failed after ${maxRetries} attempts`);
+  console.error(`[Promptologist] Failed after ${maxRetries} attempts`);
   throw lastError||new Error("Execution failed after retries");
 }
 
@@ -142,7 +142,7 @@ chrome.contextMenus.onClicked.addListener(async(info,tab)=>{
   try{
     const prompt=await p.prompts.get(promptId);
     if(!prompt){
-      console.error("[Sean Promptology] Prompt not found:",promptId);
+      console.error("[Promptologist] Prompt not found:",promptId);
       return;
     }
     
@@ -187,7 +187,7 @@ chrome.contextMenus.onClicked.addListener(async(info,tab)=>{
     // Increment usage count
     await p.prompts.update(promptId,{usageCount:(prompt.usageCount||0)+1});
   }catch(error){
-    console.error("[Sean Promptology] Error executing prompt:",error);
+    console.error("[Promptologist] Error executing prompt:",error);
     alert(`Error: ${error.message}`);
   }
 });

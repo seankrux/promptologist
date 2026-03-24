@@ -1,6 +1,6 @@
 var d=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports);var p=d((y,r)=>{
 
-console.log("[Sean Promptology] Content script loaded");
+console.log("[Promptologist] Content script loaded");
 
 // INPUT SANITIZATION - FIX #5
 function validateAndSanitizePrompt(prompt){
@@ -32,12 +32,12 @@ function validateAndSanitizePrompt(prompt){
 
 chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
   if(message.type==="EXECUTE_PROMPT"){
-    console.log("[Sean Promptology] Executing prompt:",message.prompt.substring(0,50)+"...");
+    console.log("[Promptologist] Executing prompt:",message.prompt.substring(0,50)+"...");
     try{
       executePrompt(message.prompt,message.platform);
       sendResponse({success:true});
     }catch(error){
-      console.error("[Sean Promptology] Execution error:",error);
+      console.error("[Promptologist] Execution error:",error);
       sendResponse({success:false,error:error.message});
     }
   }
@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
 });
 
 async function executePrompt(promptText,platform){
-  console.log(`[Sean Promptology] Platform: ${platform}`);
+  console.log(`[Promptologist] Platform: ${platform}`);
   
   // VALIDATE PROMPT FIRST
   try{
@@ -61,7 +61,7 @@ async function executePrompt(promptText,platform){
   
   const textarea=document.querySelector(getSelector(platform));
   if(!textarea){
-    console.error("[Sean Promptology] Textarea not found");
+    console.error("[Promptologist] Textarea not found");
     alert("Could not find input field. Make sure you're on the correct page.");
     throw new Error("Textarea not found");
   }
@@ -76,10 +76,10 @@ async function executePrompt(promptText,platform){
   
   const submitButton=findSubmitButton(platform);
   if(submitButton){
-    console.log("[Sean Promptology] Clicking submit button");
+    console.log("[Promptologist] Clicking submit button");
     submitButton.click();
   }else{
-    console.warn("[Sean Promptology] Submit button not found, prompt inserted but not submitted");
+    console.warn("[Promptologist] Submit button not found, prompt inserted but not submitted");
     textarea.dispatchEvent(new KeyboardEvent("keydown",{
       key:"Enter",
       code:"Enter",
