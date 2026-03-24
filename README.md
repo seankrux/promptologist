@@ -9,7 +9,6 @@
 [![Version](https://img.shields.io/badge/Version-2.0.0-blueviolet?style=flat-square)](#installation)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#tech-stack)
 [![Jest](https://img.shields.io/badge/Tests-Jest-C21325?style=flat-square&logo=jest&logoColor=white)](#testing)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
 **Save, organize, and inject AI prompts across ChatGPT, Claude, Gemini, Perplexity, Poe, and Grok — from a single unified library.**
 
@@ -228,10 +227,4 @@ Please open a GitHub Issue with:
 
 ---
 
-## License
-
-[MIT](LICENSE)
-
----
-
-<p align="center">Made with care by Sean G</p>
+<p align="center">Made with 💛 by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></p>
