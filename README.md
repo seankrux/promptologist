@@ -1,16 +1,17 @@
 <div align="center">
 
-# Promptologist
+  <h1>Promptologist <sup>v2.0.0</sup></h1>
 
-<p><strong>Advanced AI prompt management and automation for Chrome</strong></p>
+  <p><strong>Advanced AI prompt management and automation for Chrome</strong></p>
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Available-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore)
-[![Manifest V3](https://img.shields.io/badge/Manifest-V3-34A853?style=flat-square)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
-[![Version](https://img.shields.io/badge/Version-2.0.0-blueviolet?style=flat-square)](#installation)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#tech-stack)
-[![Jest](https://img.shields.io/badge/Tests-Jest-C21325?style=flat-square&logo=jest&logoColor=white)](#testing)
+  <p>
+    <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Available-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+    <img src="https://img.shields.io/badge/Manifest-V3-34A853?style=for-the-badge" alt="Manifest V3" />
+    <img src="https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+    <img src="https://img.shields.io/badge/Tests-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
+  </p>
 
-**Save, organize, and inject AI prompts across ChatGPT, Claude, Gemini, Perplexity, Poe, and Grok — from a single unified library.**
+  <p><strong>Save, organize, and inject AI prompts across ChatGPT, Claude, Gemini, Perplexity, Poe, and Grok — from a single unified library.</strong></p>
 
 </div>
 
@@ -22,20 +23,14 @@ Promptologist transforms your browser into a professional prompt command center.
 
 Works entirely offline. No accounts. No cloud sync. Your prompts stay on your machine.
 
----
-
-## Demo
-
-> Screenshots and demo GIFs coming soon. <!-- Add screenshots/GIFs here -->
-
----
+<br>
 
 ## Why Promptologist?
 
 Most people re-type the same prompts dozens of times a week across different AI tools. Promptologist eliminates that entirely.
 
 | Problem | Promptologist's Answer |
-|---|---|
+|---------|----------------------|
 | Switching between ChatGPT, Claude, Gemini requires re-entering context | One library, six platforms, instant injection |
 | Prompts get lost in notes apps or chat history | Organized, searchable, categorized library — always one click away |
 | Rephrasing the same prompt for different content wastes time | Template variables (`{{text}}`, `{{url}}`, `{{title}}`) make prompts reusable dynamically |
@@ -44,22 +39,31 @@ Most people re-type the same prompts dozens of times a week across different AI 
 
 Promptologist is built for power users, prompt engineers, researchers, writers, and developers who rely on AI tools daily and need a professional-grade workflow — not a toy bookmarks list.
 
----
+<br>
 
 ## Features
 
-- **Prompt Library** — Save, organize, and categorize prompts with folders and favorites
-- **One-Click Injection** — Insert prompts directly into any supported AI chat input field
-- **Context Menu Integration** — Right-click selected text to run prompts enriched with `{{text}}` variables
-- **Template Variables** — Use `{{text}}`, `{{url}}`, and `{{title}}` for dynamic, reusable prompt content
-- **Platform Auto-Detection** — Automatically identifies which AI service you are on and targets the correct input
-- **Favorites & Usage Tracking** — Star your most-used prompts and surface them by frequency
-- **Search & Filter** — Find any prompt instantly across your entire library
-- **Retry with Exponential Backoff** — Gracefully handles slow platform loads without failing silently
-- **Input Sanitization** — Prompt content is validated before injection to prevent XSS
-- **Offline-First** — All data stored locally via IndexedDB; no account or server required
+> **Prompt Library** — Save, organize, and categorize prompts with folders and favorites
 
----
+> **One-Click Injection** — Insert prompts directly into any supported AI chat input field
+
+> **Context Menu Integration** — Right-click selected text to run prompts enriched with `{{text}}` variables
+
+> **Template Variables** — Use `{{text}}`, `{{url}}`, and `{{title}}` for dynamic, reusable prompt content
+
+> **Platform Auto-Detection** — Automatically identifies which AI service you are on and targets the correct input
+
+> **Favorites & Usage Tracking** — Star your most-used prompts and surface them by frequency
+
+> **Search & Filter** — Find any prompt instantly across your entire library
+
+> **Retry with Exponential Backoff** — Gracefully handles slow platform loads without failing silently
+
+> **Input Sanitization** — Prompt content is validated before injection to prevent XSS
+
+> **Offline-First** — All data stored locally via IndexedDB; no account or server required
+
+<br>
 
 ## Supported Platforms
 
@@ -72,7 +76,7 @@ Promptologist is built for power users, prompt engineers, researchers, writers, 
 | Poe | `poe.com` | Yes |
 | Grok | `grok.x.com` | Yes |
 
----
+<br>
 
 ## Installation
 
@@ -94,7 +98,7 @@ npm run build
 3. Click **Load unpacked** and select the cloned folder
 4. Pin the Promptologist icon to your toolbar
 
----
+<br>
 
 ## Usage
 
@@ -120,7 +124,7 @@ npm run build
 
 **Example:** A prompt like `"Summarize this for a technical audience: {{text}}"` becomes a one-click action for any selected content on any page.
 
----
+<br>
 
 ## Development
 
@@ -151,7 +155,7 @@ npm run test:watch     # Watch mode
 npm run test:coverage  # Generate coverage report
 ```
 
----
+<br>
 
 ## Architecture
 
@@ -185,19 +189,23 @@ jest.config.js            Test configuration
 | Testing | Jest + jsdom |
 | Transpiler | Babel |
 
----
+<br>
 
 ## Security
 
 Promptologist is built with a defense-in-depth approach:
 
-- **Message validation** — All inter-script messages are verified against the extension's own ID and a strict type whitelist, preventing message injection attacks
-- **Input sanitization** — Prompts are scanned for dangerous patterns (`<script>`, `javascript:`, `eval()`, and similar) before injection into any DOM element
-- **Scoped permissions** — Content scripts run exclusively on supported AI platform domains, not on arbitrary websites
-- **Content Security Policy** — Extension pages enforce `script-src 'self'; object-src 'self'`, blocking inline scripts and external resources
-- **Minimal permissions** — Only the permissions required for core functionality are declared in `manifest.json`
+> **Message Validation** — All inter-script messages are verified against the extension's own ID and a strict type whitelist, preventing message injection attacks
 
----
+> **Input Sanitization** — Prompts are scanned for dangerous patterns (`<script>`, `javascript:`, `eval()`, and similar) before injection into any DOM element
+
+> **Scoped Permissions** — Content scripts run exclusively on supported AI platform domains, not on arbitrary websites
+
+> **Content Security Policy** — Extension pages enforce `script-src 'self'; object-src 'self'`, blocking inline scripts and external resources
+
+> **Minimal Permissions** — Only the permissions required for core functionality are declared in `manifest.json`
+
+<br>
 
 ## Contributing
 
@@ -217,7 +225,7 @@ Please open a GitHub Issue with:
 - Expected vs. actual behavior
 - Console errors (from `chrome://extensions` or DevTools), if any
 
-### Roadmap Ideas
+### Planned Improvements
 
 - Firefox / Edge support via WebExtensions API
 - Import/export prompt library (JSON)
@@ -225,6 +233,8 @@ Please open a GitHub Issue with:
 - Keyboard shortcut for popup
 - Additional platform support
 
----
+<br>
 
-<p align="center">Made with 💛 by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></p>
+<div align="center">
+  <sub>Built by <a href="https://www.seanguillermo.com"><strong>Sean G</strong></a></sub>
+</div>
