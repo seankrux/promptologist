@@ -5,3 +5,5 @@ dist/
 *.crx
 *.pem
 *.log
+.env
+.env.local
