@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate manifest
+        run: |
+          python3 -m json.tool manifest.json > /dev/null
+          echo "Manifest version: $(python3 -c "import json; print(json.load(open('manifest.json'))[manifest_version])")"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - run: npm run lint --if-present
+
+      - run: npm run build --if-present
