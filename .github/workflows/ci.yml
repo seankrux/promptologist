@@ -21,7 +21,7 @@ jobs:
           python3 -m json.tool manifest.json > /dev/null
           echo "Manifest version: $(python3 -c "import json; print(json.load(open('manifest.json'))[manifest_version])")"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
 
