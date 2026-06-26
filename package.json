@@ -42,7 +42,7 @@
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.4.0",
     "uglify-js": "^3.17.4",
-    "webpack": "^5.89.0",
+    "webpack": "^5.108.0",
     "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^5.2.5"
   },
